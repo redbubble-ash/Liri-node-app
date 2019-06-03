@@ -17,33 +17,52 @@ if (task === "spotify-this-song") {
     var song = process.argv;
     var songName = "";
 
-    for (var i = 3; i < song.length; i++) {
+    if (song.length === 3) {
+        songName = "The Sign";
+                console.log("==============================");
+                console.log("Spotify Results for 'The Sign'");
+                console.log("\n");
+                console.log("Artist(s) Name: 'Ace of Base'");
+                console.log("The song's name: 'The Sign'");
+                console.log("A preview link of the song from Spotify: 'https://open.spotify.com/artist/5ksRONqssB7BR161NTtJAm'");
+                console.log("The album that the song is from: 'The Sign'");
+                console.log("\n");
+                console.log("==============================");
 
-        if (i > 3 && i < song.length) {
-          songName = songName + "+" + song[i];
-        } 
-        else {
-          songName += song[i];
-      
+    }
+    else {
+        for (var i = 3; i < song.length; i++) {
+
+            if (i > 3 && i < song.length) {
+                songName = songName + "+" + song[i];
+            }
+            else {
+                songName += song[i];
+            }
+
         }
-      }
+        spotify
+            .search({ type: 'track', query: songName })
+            .then(function (response) {
+                console.log("==============================");
+                console.log("Spotify Results for " + JSON.stringify(response.tracks.items[0].name));
+                console.log("\n");
+                console.log("Artist(s) Name: " + JSON.stringify(response.tracks.items[0].artists[0].name));
+                console.log("The song's name: " + JSON.stringify(response.tracks.items[0].name));
+                console.log("A preview link of the song from Spotify: " + JSON.stringify(response.tracks.items[0].external_urls.spotify));
+                console.log("The album that the song is from: " + JSON.stringify(response.tracks.items[0].album.name));
+                console.log("\n");
+                console.log("==============================");
 
-    spotify
-        .search({ type: 'track', query: songName })
-        .then(function (response) {
-            console.log("==============================");
-            console.log("Spotify Results for "+JSON.stringify(response.tracks.items[0].name));
-            console.log("\n");
-            console.log("Artist(s) Name: "+JSON.stringify(response.tracks.items[0].artists[0].name));
-            console.log("The song's name: "+JSON.stringify(response.tracks.items[0].name));
-            console.log("A preview link of the song from Spotify: "+JSON.stringify(response.tracks.items[0].external_urls.spotify));
-            console.log("The album that the song is from: "+JSON.stringify(response.tracks.items[0].album.name));
-            console.log("\n");
-            console.log("==============================");
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
 
-        })
-        .catch(function (err) {
-            console.log(err);
-        });
 
+
+
+    }
 }
+
+
