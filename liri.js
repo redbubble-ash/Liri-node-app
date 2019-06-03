@@ -2,6 +2,8 @@ require("dotenv").config();
 
 const axios = require("axios");
 
+var moment = require('moment');
+
 var task = process.argv[2];
 
 // Spotify:
@@ -90,13 +92,14 @@ if (task === "concert-this"){
  axios.get(queryUrl).then(
     function(response) {
       console.log("==============================");
+      console.log("\n");
       console.log(response.data[0].lineup[0] +" is playing at:");
+      console.log("\n");
       console.log("Name of the venue: " + response.data[0].venue.name);
       console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
-      console.log("Date of the Event: " + response.data[0].datetime);
-
-
-
+      console.log("Date of the Event: " + moment(response.data[0].datetime).format("MM-DD-YYYY HH:mm"));
+      console.log("\n");
+      console.log("==============================");
     })
     .catch(function(error) {
       if (error.response) {
@@ -120,6 +123,6 @@ if (task === "concert-this"){
     });
   
 
-
+    
 
 }
