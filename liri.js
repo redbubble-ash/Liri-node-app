@@ -2,6 +2,8 @@ require("dotenv").config();
 
 var axios = require("axios");
 
+var task = process.argv[2];
+
 // Spotify:
 // Add the code required to import the `keys.js` file and store it in a variable.
 var keys = require("./keys.js");
@@ -10,13 +12,12 @@ var Spotify = require("node-spotify-api");
 
 var spotify = new Spotify(keys.spotify);
 
-var task = process.argv[2];
-
 if (task === "spotify-this-song") {
 
     var song = process.argv;
     var songName = "";
 
+    //If no song is provided then display song "The sign" by Ace of Base.
     if (song.length === 3) {
         songName = "The Sign";
                 console.log("==============================");
@@ -30,7 +31,10 @@ if (task === "spotify-this-song") {
                 console.log("==============================");
 
     }
+    //If song is provided, get song's info through Spotify Web
     else {
+        //Loop through all the words in the node argument
+        //And do a little for-loop magic to handle the inclusion of "+"s
         for (var i = 3; i < song.length; i++) {
 
             if (i > 3 && i < song.length) {
