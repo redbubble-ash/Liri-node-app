@@ -206,33 +206,116 @@ if (task === "movie-this") {
 }
 
 //Using the `fs` Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
-if (task === "do-what-it-says"){
+if (task === "do-what-it-says") {
 
     // Tell Node to read in the file "random.txt", and then to get a callback when the file-reading has been finished. 
-    fs.readFile("./random.txt","utf8",function(err, contents){
-        // console.log(contents);
+    fs.readFile("./random.txt", "utf8", function (err, contents) {
         // get the contents from random.txt and split a string to an array by ",". spotify-this-song,"I Want it That Way" will be converted to ["spotify-this-song","I Want it That Way"]
-        var newContentsArray= contents.split(",");
-        if (newContentsArray[0] === "spotify-this-song"){
+        var newContentsArray = contents.split(",");
+        // console.log(newContentsArray);
+        if (newContentsArray[0] === "spotify-this-song") {
 
             spotify
-            .search({ type: 'track', query: newContentsArray[1] })
-            .then(function (response) {
-                console.log("==============================");
-                console.log("Spotify Results for " + JSON.stringify(response.tracks.items[0].name));
-                console.log("\n");
-                console.log("Artist(s) Name: " + JSON.stringify(response.tracks.items[0].artists[0].name));
-                console.log("The song's name: " + JSON.stringify(response.tracks.items[0].name));
-                console.log("A preview link of the song from Spotify: " + JSON.stringify(response.tracks.items[0].external_urls.spotify));
-                console.log("The album that the song is from: " + JSON.stringify(response.tracks.items[0].album.name));
-                console.log("\n");
-                console.log("==============================");
+                .search({ type: 'track', query: newContentsArray[1] })
+                .then(function (response) {
+                    console.log("==============================");
+                    console.log("Spotify Results for " + JSON.stringify(response.tracks.items[0].name));
+                    console.log("\n");
+                    console.log("Artist(s) Name: " + JSON.stringify(response.tracks.items[0].artists[0].name));
+                    console.log("The song's name: " + JSON.stringify(response.tracks.items[0].name));
+                    console.log("A preview link of the song from Spotify: " + JSON.stringify(response.tracks.items[0].external_urls.spotify));
+                    console.log("The album that the song is from: " + JSON.stringify(response.tracks.items[0].album.name));
+                    console.log("\n");
+                    console.log("==============================");
 
-            })
-            .catch(function (err) {
-                console.log(err);
-            });
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
 
+        }
+        if (newContentsArray[0] === "movie-this") {
+            // Then run a request with axios to the OMDB API with the movie specified
+            var queryUrl = "http://www.omdbapi.com/?t=" + newContentsArray[1] + "&y=&plot=short&apikey=trilogy";
+
+            // This line is just to help us debug against the actual URL.
+            // console.log(queryUrl);
+
+            axios.get(queryUrl).then(
+                function (response) {
+                    console.log("==============================");
+                    console.log("\n");
+                    console.log("OMDB Results for " + "'" + response.data.Title + "':");
+                    console.log("\n");
+                    console.log("Title of the movie: " + response.data.Title);
+                    console.log("Year the movie came out: " + response.data.Year);
+                    console.log("IMDB Rating of the movie: " + response.data.Ratings[0].Value);
+                    console.log("Rotten Tomatoes Rating of the movie: " + response.data.Ratings[1].Value);
+                    console.log("Language of the movie: " + response.data.Language);
+                    console.log("Plot of the movie: " + response.data.Plot);
+                    console.log("Actors in the movie: " + response.data.Actors);
+                    console.log("\n");
+                    console.log("==============================");
+                })
+                .catch(function (error) {
+                    if (error.response) {
+                        // The request was made and the server responded with a status code
+                        // that falls out of the range of 2xx
+                        console.log("---------------Data---------------");
+                        console.log(error.response.data);
+                        console.log("---------------Status---------------");
+                        console.log(error.response.status);
+                        console.log("---------------Status---------------");
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        // The request was made but no response was received
+                        // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                        console.log(error.request);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log("Error", error.message);
+                    }
+                    console.log(error.config);
+                });
+
+        }
+        if (newContentsArray[0] === "concert-this") {
+            // Run a request with axios to the Band in Town API with the artist specified
+            // substring(1,newContentsArray[1].length-1) = remove "" (double quotes), so "four light" return four light 
+            var queryUrl = "https://rest.bandsintown.com/artists/" + newContentsArray[1].substring(1,newContentsArray[1].length-1) + "/events?app_id=codingbootcamp"
+            // console.log(queryUrl);
+            axios.get(queryUrl).then(
+                function (response) {
+                    console.log("==============================");
+                    console.log("\n");
+                    console.log("'" + response.data[0].lineup[0] + "'" + " is playing at:");
+                    console.log("\n");
+                    console.log("Name of the venue: " + response.data[0].venue.name);
+                    console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
+                    console.log("Date of the Event: " + moment(response.data[0].datetime).format("MM-DD-YYYY HH:mm"));
+                    console.log("\n");
+                    console.log("==============================");
+                })
+                .catch(function (error) {
+                    if (error.response) {
+                        // The request was made and the server responded with a status code
+                        // that falls out of the range of 2xx
+                        console.log("---------------Data---------------");
+                        console.log(error.response.data);
+                        console.log("---------------Status---------------");
+                        console.log(error.response.status);
+                        console.log("---------------Status---------------");
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        // The request was made but no response was received
+                        // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                        console.log(error.request);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log("Error", error.message);
+                    }
+                    console.log(error.config);
+                });
         }
 
 
