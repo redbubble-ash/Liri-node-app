@@ -8,6 +8,16 @@ var fs = require('fs');
 
 const task = process.argv[2];
 
+//***BONUS: A function that console.logs AND also takes the output data append to the log.txt for each command.
+function consoleLog(outputData) {
+    console.log(outputData);
+    // use fs.appendFile() node pacakge to append the string (output data) from console.logs to the end of the file "log.txt".
+    fs.appendFile('log.txt', outputData, function (err) {
+        if (err) throw err;
+    });
+
+}
+
 // Spotify:
 // Add the code required to import the `keys.js` file and store it in a variable.
 var keys = require("./keys.js");
@@ -24,15 +34,15 @@ if (task === "spotify-this-song") {
     //If no song is provided then display song "The sign" by Ace of Base.
     if (song.length === 3) {
         songName = "The Sign";
-        console.log("==============================");
-        console.log("Spotify Results for 'The Sign'");
-        console.log("\n");
-        console.log("Artist(s) Name: 'Ace of Base'");
-        console.log("The song's name: 'The Sign'");
-        console.log("A preview link of the song from Spotify: 'https://open.spotify.com/artist/5ksRONqssB7BR161NTtJAm'");
-        console.log("The album that the song is from: 'The Sign'");
-        console.log("\n");
-        console.log("==============================");
+        consoleLog("==============================");
+        consoleLog("Spotify Results for 'The Sign'");
+        consoleLog("\n");
+        consoleLog("Artist(s) Name: 'Ace of Base'");
+        consoleLog("The song's name: 'The Sign'");
+        consoleLog("A preview link of the song from Spotify: 'https://open.spotify.com/artist/5ksRONqssB7BR161NTtJAm'");
+        consoleLog("The album that the song is from: 'The Sign'");
+        consoleLog("\n");
+        consoleLog("==============================");
 
     }
     //If song is provided, get song's info through Spotify Web
@@ -52,19 +62,19 @@ if (task === "spotify-this-song") {
         spotify
             .search({ type: 'track', query: songName })
             .then(function (response) {
-                console.log("==============================");
-                console.log("Spotify Results for " + JSON.stringify(response.tracks.items[0].name));
-                console.log("\n");
-                console.log("Artist(s) Name: " + JSON.stringify(response.tracks.items[0].artists[0].name));
-                console.log("The song's name: " + JSON.stringify(response.tracks.items[0].name));
-                console.log("A preview link of the song from Spotify: " + JSON.stringify(response.tracks.items[0].external_urls.spotify));
-                console.log("The album that the song is from: " + JSON.stringify(response.tracks.items[0].album.name));
-                console.log("\n");
-                console.log("==============================");
+                consoleLog("==============================");
+                consoleLog("Spotify Results for " + JSON.stringify(response.tracks.items[0].name));
+                consoleLog("\n");
+                consoleLog("Artist(s) Name: " + JSON.stringify(response.tracks.items[0].artists[0].name));
+                consoleLog("The song's name: " + JSON.stringify(response.tracks.items[0].name));
+                consoleLog("A preview link of the song from Spotify: " + JSON.stringify(response.tracks.items[0].external_urls.spotify));
+                consoleLog("The album that the song is from: " + JSON.stringify(response.tracks.items[0].album.name));
+                consoleLog("\n");
+                consoleLog("==============================");
 
             })
             .catch(function (err) {
-                console.log(err);
+                consoleLog(err);
             });
 
     }
@@ -98,35 +108,35 @@ if (task === "concert-this") {
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log("==============================");
-            console.log("\n");
-            console.log("'" + response.data[0].lineup[0] + "'" + " is playing at:");
-            console.log("\n");
-            console.log("Name of the venue: " + response.data[0].venue.name);
-            console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
-            console.log("Date of the Event: " + moment(response.data[0].datetime).format("MM-DD-YYYY HH:mm"));
-            console.log("\n");
-            console.log("==============================");
+            consoleLog("==============================");
+            consoleLog("\n");
+            consoleLog("'" + response.data[0].lineup[0] + "'" + " is playing at:");
+            consoleLog("\n");
+            consoleLog("Name of the venue: " + response.data[0].venue.name);
+            consoleLog("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
+            consoleLog("Date of the Event: " + moment(response.data[0].datetime).format("MM-DD-YYYY HH:mm"));
+            consoleLog("\n");
+            consoleLog("==============================");
         })
         .catch(function (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
-                console.log("---------------Data---------------");
-                console.log(error.response.data);
-                console.log("---------------Status---------------");
-                console.log(error.response.status);
-                console.log("---------------Status---------------");
-                console.log(error.response.headers);
+                consoleLog("---------------Data---------------");
+                consoleLog(error.response.data);
+                consoleLog("---------------Status---------------");
+                consoleLog(error.response.status);
+                consoleLog("---------------Status---------------");
+                consoleLog(error.response.headers);
             } else if (error.request) {
                 // The request was made but no response was received
                 // `error.request` is an object that comes back with details pertaining to the error that occurred.
-                console.log(error.request);
+                consoleLog(error.request);
             } else {
                 // Something happened in setting up the request that triggered an Error
-                console.log("Error", error.message);
+                consoleLog("Error", error.message);
             }
-            console.log(error.config);
+            consoleLog(error.config);
         });
 
 }
@@ -164,43 +174,43 @@ if (task === "movie-this") {
     var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
     // This line is just to help us debug against the actual URL.
-    // console.log(queryUrl);
+    // consoleLog(queryUrl);
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log("==============================");
-            console.log("\n");
-            console.log("OMDB Results for " + "'" + response.data.Title + "':");
-            console.log("\n");
-            console.log("Title of the movie: " + response.data.Title);
-            console.log("Year the movie came out: " + response.data.Year);
-            console.log("IMDB Rating of the movie: " + response.data.Ratings[0].Value);
-            console.log("Rotten Tomatoes Rating of the movie: " + response.data.Ratings[1].Value);
-            console.log("Language of the movie: " + response.data.Language);
-            console.log("Plot of the movie: " + response.data.Plot);
-            console.log("Actors in the movie: " + response.data.Actors);
-            console.log("\n");
-            console.log("==============================");
+            consoleLog("==============================");
+            consoleLog("\n");
+            consoleLog("OMDB Results for " + "'" + response.data.Title + "':");
+            consoleLog("\n");
+            consoleLog("Title of the movie: " + response.data.Title);
+            consoleLog("Year the movie came out: " + response.data.Year);
+            consoleLog("IMDB Rating of the movie: " + response.data.Ratings[0].Value);
+            consoleLog("Rotten Tomatoes Rating of the movie: " + response.data.Ratings[1].Value);
+            consoleLog("Language of the movie: " + response.data.Language);
+            consoleLog("Plot of the movie: " + response.data.Plot);
+            consoleLog("Actors in the movie: " + response.data.Actors);
+            consoleLog("\n");
+            consoleLog("==============================");
         })
         .catch(function (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
-                console.log("---------------Data---------------");
-                console.log(error.response.data);
-                console.log("---------------Status---------------");
-                console.log(error.response.status);
-                console.log("---------------Status---------------");
-                console.log(error.response.headers);
+                consoleLog("---------------Data---------------");
+                consoleLog(error.response.data);
+                consoleLog("---------------Status---------------");
+                consoleLog(error.response.status);
+                consoleLog("---------------Status---------------");
+                consoleLog(error.response.headers);
             } else if (error.request) {
                 // The request was made but no response was received
                 // `error.request` is an object that comes back with details pertaining to the error that occurred.
-                console.log(error.request);
+                consoleLog(error.request);
             } else {
                 // Something happened in setting up the request that triggered an Error
-                console.log("Error", error.message);
+                consoleLog("Error", error.message);
             }
-            console.log(error.config);
+            consoleLog(error.config);
         });
 
 }
@@ -212,25 +222,25 @@ if (task === "do-what-it-says") {
     fs.readFile("./random.txt", "utf8", function (err, contents) {
         // get the contents from random.txt and split a string to an array by ",". spotify-this-song,"I Want it That Way" will be converted to ["spotify-this-song","I Want it That Way"]
         var newContentsArray = contents.split(",");
-        // console.log(newContentsArray);
+        // consoleLog(newContentsArray);
         if (newContentsArray[0] === "spotify-this-song") {
 
             spotify
                 .search({ type: 'track', query: newContentsArray[1] })
                 .then(function (response) {
-                    console.log("==============================");
-                    console.log("Spotify Results for " + JSON.stringify(response.tracks.items[0].name));
-                    console.log("\n");
-                    console.log("Artist(s) Name: " + JSON.stringify(response.tracks.items[0].artists[0].name));
-                    console.log("The song's name: " + JSON.stringify(response.tracks.items[0].name));
-                    console.log("A preview link of the song from Spotify: " + JSON.stringify(response.tracks.items[0].external_urls.spotify));
-                    console.log("The album that the song is from: " + JSON.stringify(response.tracks.items[0].album.name));
-                    console.log("\n");
-                    console.log("==============================");
+                    consoleLog("==============================");
+                    consoleLog("Spotify Results for " + JSON.stringify(response.tracks.items[0].name));
+                    consoleLog("\n");
+                    consoleLog("Artist(s) Name: " + JSON.stringify(response.tracks.items[0].artists[0].name));
+                    consoleLog("The song's name: " + JSON.stringify(response.tracks.items[0].name));
+                    consoleLog("A preview link of the song from Spotify: " + JSON.stringify(response.tracks.items[0].external_urls.spotify));
+                    consoleLog("The album that the song is from: " + JSON.stringify(response.tracks.items[0].album.name));
+                    consoleLog("\n");
+                    consoleLog("==============================");
 
                 })
                 .catch(function (err) {
-                    console.log(err);
+                    consoleLog(err);
                 });
 
         }
@@ -239,82 +249,82 @@ if (task === "do-what-it-says") {
             var queryUrl = "http://www.omdbapi.com/?t=" + newContentsArray[1] + "&y=&plot=short&apikey=trilogy";
 
             // This line is just to help us debug against the actual URL.
-            // console.log(queryUrl);
+            // consoleLog(queryUrl);
 
             axios.get(queryUrl).then(
                 function (response) {
-                    console.log("==============================");
-                    console.log("\n");
-                    console.log("OMDB Results for " + "'" + response.data.Title + "':");
-                    console.log("\n");
-                    console.log("Title of the movie: " + response.data.Title);
-                    console.log("Year the movie came out: " + response.data.Year);
-                    console.log("IMDB Rating of the movie: " + response.data.Ratings[0].Value);
-                    console.log("Rotten Tomatoes Rating of the movie: " + response.data.Ratings[1].Value);
-                    console.log("Language of the movie: " + response.data.Language);
-                    console.log("Plot of the movie: " + response.data.Plot);
-                    console.log("Actors in the movie: " + response.data.Actors);
-                    console.log("\n");
-                    console.log("==============================");
+                    consoleLog("==============================");
+                    consoleLog("\n");
+                    consoleLog("OMDB Results for " + "'" + response.data.Title + "':");
+                    consoleLog("\n");
+                    consoleLog("Title of the movie: " + response.data.Title);
+                    consoleLog("Year the movie came out: " + response.data.Year);
+                    consoleLog("IMDB Rating of the movie: " + response.data.Ratings[0].Value);
+                    consoleLog("Rotten Tomatoes Rating of the movie: " + response.data.Ratings[1].Value);
+                    consoleLog("Language of the movie: " + response.data.Language);
+                    consoleLog("Plot of the movie: " + response.data.Plot);
+                    consoleLog("Actors in the movie: " + response.data.Actors);
+                    consoleLog("\n");
+                    consoleLog("==============================");
                 })
                 .catch(function (error) {
                     if (error.response) {
                         // The request was made and the server responded with a status code
                         // that falls out of the range of 2xx
-                        console.log("---------------Data---------------");
-                        console.log(error.response.data);
-                        console.log("---------------Status---------------");
-                        console.log(error.response.status);
-                        console.log("---------------Status---------------");
-                        console.log(error.response.headers);
+                        consoleLog("---------------Data---------------");
+                        consoleLog(error.response.data);
+                        consoleLog("---------------Status---------------");
+                        consoleLog(error.response.status);
+                        consoleLog("---------------Status---------------");
+                        consoleLog(error.response.headers);
                     } else if (error.request) {
                         // The request was made but no response was received
                         // `error.request` is an object that comes back with details pertaining to the error that occurred.
-                        console.log(error.request);
+                        consoleLog(error.request);
                     } else {
                         // Something happened in setting up the request that triggered an Error
-                        console.log("Error", error.message);
+                        consoleLog("Error", error.message);
                     }
-                    console.log(error.config);
+                    consoleLog(error.config);
                 });
 
         }
         if (newContentsArray[0] === "concert-this") {
             // Run a request with axios to the Band in Town API with the artist specified
             // slice(1,-1) = remove "" (double quotes), so "four light" return four light or use:substring(1,newContentsArray[1].length-1)
-            var queryUrl = "https://rest.bandsintown.com/artists/" + newContentsArray[1].slice(1,-1) + "/events?app_id=codingbootcamp"
-            console.log(queryUrl);
+            var queryUrl = "https://rest.bandsintown.com/artists/" + newContentsArray[1].slice(1, -1) + "/events?app_id=codingbootcamp"
+            consoleLog(queryUrl);
             axios.get(queryUrl).then(
                 function (response) {
-                    console.log("==============================");
-                    console.log("\n");
-                    console.log("'" + response.data[0].lineup[0] + "'" + " is playing at:");
-                    console.log("\n");
-                    console.log("Name of the venue: " + response.data[0].venue.name);
-                    console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
-                    console.log("Date of the Event: " + moment(response.data[0].datetime).format("MM-DD-YYYY HH:mm"));
-                    console.log("\n");
-                    console.log("==============================");
+                    consoleLog("==============================");
+                    consoleLog("\n");
+                    consoleLog("'" + response.data[0].lineup[0] + "'" + " is playing at:");
+                    consoleLog("\n");
+                    consoleLog("Name of the venue: " + response.data[0].venue.name);
+                    consoleLog("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
+                    consoleLog("Date of the Event: " + moment(response.data[0].datetime).format("MM-DD-YYYY HH:mm"));
+                    consoleLog("\n");
+                    consoleLog("==============================");
                 })
                 .catch(function (error) {
                     if (error.response) {
                         // The request was made and the server responded with a status code
                         // that falls out of the range of 2xx
-                        console.log("---------------Data---------------");
-                        console.log(error.response.data);
-                        console.log("---------------Status---------------");
-                        console.log(error.response.status);
-                        console.log("---------------Status---------------");
-                        console.log(error.response.headers);
+                        consoleLog("---------------Data---------------");
+                        consoleLog(error.response.data);
+                        consoleLog("---------------Status---------------");
+                        consoleLog(error.response.status);
+                        consoleLog("---------------Status---------------");
+                        consoleLog(error.response.headers);
                     } else if (error.request) {
                         // The request was made but no response was received
                         // `error.request` is an object that comes back with details pertaining to the error that occurred.
-                        console.log(error.request);
+                        consoleLog(error.request);
                     } else {
                         // Something happened in setting up the request that triggered an Error
-                        console.log("Error", error.message);
+                        consoleLog("Error", error.message);
                     }
-                    console.log(error.config);
+                    consoleLog(error.config);
                 });
         }
 
@@ -322,3 +332,5 @@ if (task === "do-what-it-says") {
 
     })
 }
+
+
