@@ -281,9 +281,9 @@ if (task === "do-what-it-says") {
         }
         if (newContentsArray[0] === "concert-this") {
             // Run a request with axios to the Band in Town API with the artist specified
-            // substring(1,newContentsArray[1].length-1) = remove "" (double quotes), so "four light" return four light 
-            var queryUrl = "https://rest.bandsintown.com/artists/" + newContentsArray[1].substring(1,newContentsArray[1].length-1) + "/events?app_id=codingbootcamp"
-            // console.log(queryUrl);
+            // slice(1,-1) = remove "" (double quotes), so "four light" return four light or use:substring(1,newContentsArray[1].length-1)
+            var queryUrl = "https://rest.bandsintown.com/artists/" + newContentsArray[1].slice(1,-1) + "/events?app_id=codingbootcamp"
+            console.log(queryUrl);
             axios.get(queryUrl).then(
                 function (response) {
                     console.log("==============================");
