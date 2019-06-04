@@ -4,6 +4,8 @@ const axios = require("axios");
 
 var moment = require('moment');
 
+var fs = require('fs');
+
 const task = process.argv[2];
 
 // Spotify:
@@ -203,3 +205,37 @@ if (task === "movie-this") {
 
 }
 
+//Using the `fs` Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
+if (task === "do-what-it-says"){
+
+    // Tell Node to read in the file "random.txt", and then to get a callback when the file-reading has been finished. 
+    fs.readFile("./random.txt","utf8",function(err, contents){
+        // console.log(contents);
+        // get the contents from random.txt and split a string to an array by ",". spotify-this-song,"I Want it That Way" will be converted to ["spotify-this-song","I Want it That Way"]
+        var newContentsArray= contents.split(",");
+        if (newContentsArray[0] === "spotify-this-song"){
+
+            spotify
+            .search({ type: 'track', query: newContentsArray[1] })
+            .then(function (response) {
+                console.log("==============================");
+                console.log("Spotify Results for " + JSON.stringify(response.tracks.items[0].name));
+                console.log("\n");
+                console.log("Artist(s) Name: " + JSON.stringify(response.tracks.items[0].artists[0].name));
+                console.log("The song's name: " + JSON.stringify(response.tracks.items[0].name));
+                console.log("A preview link of the song from Spotify: " + JSON.stringify(response.tracks.items[0].external_urls.spotify));
+                console.log("The album that the song is from: " + JSON.stringify(response.tracks.items[0].album.name));
+                console.log("\n");
+                console.log("==============================");
+
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
+        }
+
+
+
+    })
+}
