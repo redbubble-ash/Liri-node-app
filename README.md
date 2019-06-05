@@ -81,10 +81,10 @@ It should run 'spotify-this-song','movie-this" or "concert-this" for "I Want it 
 #### spotify-this-song
 
 "random.txt" for 'spotify-this-song":
-![do-what-it-says](/images/random spotify-this-song.PNG)
+![do-what-it-says](/images/random-spotify-this-song.PNG)
 
 Search song "Rolling in the Deep":
-![do-what-it-says](/images/do-what-it-says spotify-this-song.PNG)
+![do-what-it-says](/images/do-what-it-says-spotify-this-song.PNG)
 
 
 #### movie-this
