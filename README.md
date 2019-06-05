@@ -81,25 +81,25 @@ It should run 'spotify-this-song','movie-this" or "concert-this" for "I Want it 
 #### spotify-this-song
 
 "random.txt" for 'spotify-this-song":
-![spotify-this-song](/images/random spotify-this-song.PNG)
+![do-what-it-says](/images/random spotify-this-song.PNG)
 
 Search song "Rolling in the Deep":
-![spotify-this-song](/images/do-what-it-says spotify-this-song.PNG)
+![do-what-it-says](/images/do-what-it-says spotify-this-song.PNG)
 
 
 #### movie-this
 
 "random.txt" for 'movie-this":
-![movie-this](/images/random movie-this.PNG)
+![do-what-it-says](/images/random movie-this.PNG)
 
 Search movie "Deadpool":
-![movie-this](/images/do-what-it-says movie-this.PNG)
+![do-what-it-says](/images/do-what-it-says movie-this.PNG)
 
 
 #### concert-this
 
 "random.txt" for 'concert-this":
-![concert-this](/images/random concert-this.PNG)
+![do-what-it-says](/images/random concert-this.PNG)
 
 Search concert "Dido":
-![concert-this](/images/do-what-it-says concert-this.PNG)
+![do-what-it-says](/images/do-what-it-says concert-this.PNG)
