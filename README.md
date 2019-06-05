@@ -6,7 +6,7 @@ The App will search Spotify for songs, Bands in Town for concerts, and OMDB for 
 
 ## How to use this App?
 
-**spotify-this-song
+**spotify-this-song**
 
 On the command line, enter "node liri.js spotify-this-song '[song name here]'", [song name] is the name input of the song. This will show the following information about the song in your terminal/bash window. 
 
@@ -28,7 +28,7 @@ On the command line, enter "node liri.js spotify-this-song '[song name here]'", 
 2. No song's name is provided:
 ![spotify-this-song](/images/spotify-this-song2.PNG)
 
-**movie-this
+**movie-this**
 
 On the command line, enter "node liri.js movie-this '[movie name here]'", [movie name] is the name input of the movie. This will output the following information to your terminal/bash window:
 
@@ -55,7 +55,7 @@ On the command line, enter "node liri.js movie-this '[movie name here]'", [movie
 ![movie-this](/images/movie-this2.PNG)
 
 
-**concert-this
+**concert-this**
 
 On the command line, enter "node liri.js movie-this '[concert name here]'", [concert name] is the name input of the concert. This will output the following information to your terminal/bash window:
 
