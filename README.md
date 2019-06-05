@@ -6,7 +6,7 @@ The App will search Spotify for songs, Bands in Town for concerts, and OMDB for 
 
 ## How to use this App?
 
-* 'spotify-this-song'
+** 'spotify-this-song'
 
 On the command line, enter 'node liri.js spotify-this-song '<song name here>'', <song name> is an input of the song's name. This will show the following information about the song in your terminal/bash window. 
      * Artist(s)
@@ -22,8 +22,8 @@ On the command line, enter 'node liri.js spotify-this-song '<song name here>'', 
 See the example below:
 
 1. Search song "Rolling in the Deep":
-(/images/spotify-this-song1.PNG)
+![spotify-this-song](/images/spotify-this-song1.PNG)
 
 2. No song is provided:
-(/images/spotify-this-song2.PNG)
+![spotify-this-song](/images/spotify-this-song2.PNG)
 
