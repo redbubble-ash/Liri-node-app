@@ -23,9 +23,11 @@ On the command line, enter "node liri.js spotify-this-song '[song name here]'", 
 *See the example below:*
 
 1. Search song "Rolling in the Deep":
+
 ![spotify-this-song](/images/spotify-this-song1.PNG)
 
 2. No song's name is provided:
+
 ![spotify-this-song](/images/spotify-this-song2.PNG)
 
 ### movie-this
@@ -48,10 +50,12 @@ On the command line, enter "node liri.js movie-this '[movie name here]'", [movie
 
 *See the example below:*
 
-1. Search movie "Big Fish"
+1. Search movie "Big Fish":
+
 ![movie-this](/images/movie-this1.PNG)
 
 2. No movie's name is provided:
+
 ![movie-this](/images/movie-this2.PNG)
 
 
@@ -68,6 +72,7 @@ On the command line, enter "node liri.js movie-this '[concert name here]'", [con
 *See the example below:*
 
 1. Search concert "Four Lights":
+
 ![concert-this](/images/concert-this1.PNG)
 
 ### do-what-it-says
@@ -81,25 +86,31 @@ It should run 'spotify-this-song','movie-this" or "concert-this" for "I Want it 
 #### spotify-this-song
 
 "random.txt" for 'spotify-this-song":
+
 ![do-what-it-says](/images/random-spotify-this-song.PNG)
 
 Search song "Rolling in the Deep":
+
 ![do-what-it-says](/images/do-what-it-says-spotify-this-song.PNG)
 
 
 #### movie-this
 
 "random.txt" for 'movie-this":
-![do-what-it-says](/images/random movie-this.PNG)
+
+![do-what-it-says](/images/random-movie-this.PNG)
 
 Search movie "Deadpool":
-![do-what-it-says](/images/do-what-it-says movie-this.PNG)
+
+![do-what-it-says](/images/do-what-it-says-movie-this.PNG)
 
 
 #### concert-this
 
 "random.txt" for 'concert-this":
-![do-what-it-says](/images/random concert-this.PNG)
+
+![do-what-it-says](/images/random-concert-this.PNG)
 
 Search concert "Dido":
-![do-what-it-says](/images/do-what-it-says concert-this.PNG)
+
+![do-what-it-says](/images/do-what-it-says-concert-this.PNG)
