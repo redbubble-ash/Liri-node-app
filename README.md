@@ -6,24 +6,41 @@ The App will search Spotify for songs, Bands in Town for concerts, and OMDB for 
 
 ## How to use this App?
 
-** 'spotify-this-song'
+**'spotify-this-song'
 
-On the command line, enter 'node liri.js spotify-this-song '<song name here>'', <song name> is an input of the song's name. This will show the following information about the song in your terminal/bash window. 
+On the command line, enter "node liri.js spotify-this-song '[song name here]'", [song name] is an input of the song's name. This will show the following information about the song in your terminal/bash window. 
+
      * Artist(s)
-
      * The song's name
-
      * A preview link of the song from Spotify
-
      * The album that the song is from
-
      * If no song is provided then your program will default to "The Sign" by Ace of Base.
 
-See the example below:
+*See the example below:*
 
 1. Search song "Rolling in the Deep":
 ![spotify-this-song](/images/spotify-this-song1.PNG)
 
-2. No song is provided:
+2. No song's name is provided:
 ![spotify-this-song](/images/spotify-this-song2.PNG)
 
+**'movie-this'
+
+On the command line, enter "node liri.js movie-this '[movie name here]'", [movie name] is an input of the movie's name. This will output the following information to your terminal/bash window:
+
+       * Title of the movie.
+       * Year the movie came out.
+       * IMDB Rating of the movie.
+       * Rotten Tomatoes Rating of the movie.
+       * Country where the movie was produced.
+       * Language of the movie.
+       * Plot of the movie.
+       * Actors in the movie.
+
+*See the example below:*
+
+1. Search movie "Big Fish"
+![movie-this](/images/movie-this1.PNG)
+
+2. No movie's name is provided:
+![movie-this](/images/movie-this2.PNG)
