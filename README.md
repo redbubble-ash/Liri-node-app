@@ -120,4 +120,4 @@ Search concert "Dido":
 
 The log.txt file stores all the command output.
 
-![log](/images/log.PNG)
+![log](/images/log-append.PNG)
