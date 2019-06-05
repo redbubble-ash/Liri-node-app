@@ -22,8 +22,8 @@ On the command line, enter 'node liri.js spotify-this-song '<song name here>'', 
 See the example below:
 
 1. Search song "Rolling in the Deep":
-(/images/spotify-this-song rolling in the deep.PNG)
+(/images/spotify-this-song1.PNG)
 
 2. No song is provided:
-(/images/spotify-this-song no song.PNG)
+(/images/spotify-this-song2.PNG)
 
