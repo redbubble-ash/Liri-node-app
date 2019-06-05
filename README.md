@@ -114,3 +114,10 @@ Search movie "Deadpool":
 Search concert "Dido":
 
 ![do-what-it-says](/images/do-what-it-says-concert-this.PNG)
+
+
+### log.txt
+
+The log.txt file stores all the command output.
+
+![log](/images/log.PNG)
